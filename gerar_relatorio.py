@@ -4,16 +4,16 @@ import smtplib
 import json
 from email.message import EmailMessage
 
-# Ler configuração
+# configuração
 with open("config.json", "r") as f:
     config = json.load(f)
 
-# Ler dados do Excel
+# dados do Excel
 df = pd.read_excel("relatorio.xlsx")
 print("Dados carregados:")
 print(df)
 
-# Criar gráfico
+# Criar os gráfico
 plt.figure(figsize=(8, 4))
 plt.plot(df['Mês'], df['Vendas'], marker='o')
 plt.title("Relatório de Vendas")
@@ -24,7 +24,7 @@ plt.tight_layout()
 plt.savefig("grafico.png")
 plt.close()
 
-# Enviar e-mail com o gráfico
+# Envia e-mail com o gráfico
 msg = EmailMessage()
 msg['Subject'] = 'Relatório Automático de Vendas'
 msg['From'] = config["email"]
